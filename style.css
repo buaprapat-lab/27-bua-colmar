@@ -20,8 +20,8 @@
   --white: #ffffff;
   --link: #3a7ca5;
   --text-muted: #666; /* Paragraph */
-  --font-display: "Source Sans 3", sans-serif; /* Heading */
-  --font-body: "Roboto", sans-serif; /* Body/Paragraph */
+  --font-display: "Montserrat", sans-serif; /* Heading */
+  --font-body: "Source Sans 3", sans-serif; /* Body/Paragraph */
 }
 
 /* 4. Set Body Style = Big Picture */
@@ -30,6 +30,7 @@ body {
   font-weight: 400;
   font-size: 16;
   line-height: 1.6px;
+  letter-spacing: normal;
   color: var(--black); /* สีตัวหนังสือหลัก (เข้มเกือบดำ) */
   background: var(--lightgrey);
 }
@@ -105,11 +106,195 @@ nav a:hover {
 }
 
 /* === SECTION 2 : HERO === */
+.hero {
+  display: flex; /* ให้ hero-image, hero-content มาเรียงในแนวนอน*/
+  background: var(--darkgrey);
+  align-items: stretch; /* ให้ความสูงของ hero-content เท่ากับฝั่งรูปภาพเสมอ */
+}
+
+.hero-image {
+  width: 60%; /*REQ: กินพื้นที่ 60% */
+  margin: 32px 0 32px 24px;
+  flex-shrink: 0; /*ไม่ให้กล่องข้อความมาเบียด*/
+}
+
+.hero-image img {
+  width: 100%; /*ขยายเต็มที่ใน 60% ที่ให้มา*/
+  height: 100%;
+  object-fit: cover; /*ถมพื้นที่โดยไม่เสีย ratio ถ้าเกินตัดออกไป*/
+  display: block; /*ล้างค่า ghost space เวลาเป็น inline element*/
+}
+
+.hero-content {
+  flex: 1;
+  display: flex;
+  margin-left: 0;
+  padding: 32px 24px 32px 24px;
+  flex-direction: column; /*เพื่อให้ h1, p, bth วางเรียงแนวตั้ง*/
+  justify-content: center;
+}
+
+.hero-content h1 {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--black);
+  margin-bottom: 16px;
+}
+.hero-content p {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+}
+.btn-primary {
+  display: inline-flex; /*ให้ปุ่มรับค่า padding, height ได้ แต่ไม่กินพื้นที่เหมือน block*/
+  background: var(--black);
+  height: 44px;
+  width: 70%;
+  padding: 8px auto;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  text-decoration: none;
+  justify-content: center;
+  align-items: center;
+  line-height: normal;
+  cursor: pointer; /* ลูกศรเมาส์เป็นรูปมือ*/
+  border: none;
+  align-self: flex-start; /* ปุ่มชิดซ้าย */
+}
+
+.btn-primary:hover {
+  background: #444;
+}
+
+/* === SECTION 3: INFORMATION === */
+
+.information {
+  display: flex;
+  align-items: flex-start; /* ความสูงแนวตั้งเกาะขอบบนเสมอ แต่ละฝั่งสูงเท่าแค่เนื้อหาของตัวเอง */
+  width: 100%; /*ให้ส่วนนี้ความเต็มจอ*/
+  border-top: 1px solid var(--lightgrey);
+}
+
+/* INFO-LEFT */
+
+.info-left {
+  width: 60%; /* REQ */
+  margin: 32px 24px;
+  background: var(--lightgrey);
+}
+
+.info-left img {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 32px;
+}
+
+.info-left h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 24px;
+}
+
+.info-left blockquote {
+  font-size: 16px;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  line-height: 1.5;
+  letter-spacing: normal;
+}
+
+.info-left cite {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--black);
+  font-style: normal;
+  margin-bottom: 32px;
+}
+
+/* INFO-LEFT */
+
+.info-right {
+  flex: 1; /* ให้กินพื้นที่ 40% ที่เหลืออัตโนมัติ */
+  background: var(--lightgrey);
+  display: flex;
+  flex-direction: column;
+}
+
+.info-card {
+  display: flex;
+  gap: 0;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid var(--darkgrey);
+  background: var(--lightgrey);
+}
+
+.info-card:last-child {
+  border-bottom: none; /* ตัวสุดท้ายไม่มีเส้นแบ่ง */
+}
+
+.info-card:hover {
+  background: var(--darkgrey);
+}
+
+.info-card picture {
+  width: 35%; /* กำหนดความกว้างส่วนของรูปภาพตาม REQ */
+  flex-shrink: 0; /* ห้ามรูปถูกบีบให้เล็กลงเมื่อพื้นที่ไม่พอ */
+  display: block;
+}
+
+.info-card .card-image {
+  width: 100%; /* ให้รูปขยายเต็ม 35% ของพื้นที่ข้างบน */
+  height: auto;
+  display: block;
+  object-fit: cover; /* ป้องกันรูปเบี้ยว */
+}
+
+.info-card-body {
+  padding: 8px 0 8px 16px;
+}
+
+.info-card-body h3 {
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.info-card-body p {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: normal;
+  margin-bottom: 16px;
+}
+
+.info-card-body a {
+  font-size: 14px;
+  color: var(--link);
+  text-decoration: none;
+}
+
+.info-card-body a:hover {
+  text-decoration: underline;
+}
 
 /* ══════════════════════════════════════
              2. MOBILE  ≤ 680px
     ══════════════════════════════════════ */
 @media (max-width: 680px) {
+  /* === HEADER === */
   header {
     width: 100%;
     padding: 0; /* ล้าง padding ออกเพื่อให้กระจายได้เต็มหน้าจอ */
@@ -158,12 +343,105 @@ nav a:hover {
     justify-content: center;
     align-items: center;
     flex: 1; /* ให้แต่ละลิงก์มีพื้นที่เท่าๆ กัน (จากพื้นที่เหลือท่ี่แบ่งมาจาก nav อีกที) */
-    height: 100%; /* เพิ่มบรรทัดนี้: ให้พื้นที่คลิกสูงเต็ม header */
+    height: 100%; /* ให้พื้นที่คลิกสูงเต็ม header */
   }
 
   .nav-icon {
     display: block;
     height: 32px; /* ขนาดความสูง nav-icon */
     width: auto;
+  }
+
+  /* === HEADER : Stack verically === */
+
+  .hero {
+    flex-direction: column; /* สั่งให้รูปอยู่บน ข้อความอยู่ล่าง */
+  }
+
+  .hero-image {
+    width: 100%; /* รูปกินเต็มความกว้างจอ */
+    margin: 0; /* ล้าง margin ที่เคยตั้งไว้ใน desktop ออก */
+    display: block; /* มั่นใจว่าแสดงผลเต็มบรรทัด */
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto; /* ให้ความสูงปรับตามสัดส่วนรูปจริง ไม่โดนบีบ */
+  }
+
+  .hero-content {
+    width: 100%;
+    padding: 32px 16px;
+    align-items: flex-start;
+    margin-left: 0;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-content p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .btn-primary {
+    width: 100%;
+    text-align: center;
+    align-self: stretch;
+    padding: 16px;
+  }
+
+  /* INFO SECTION: hide left column, stack cards vertically */
+  /*  จัดเรียงเนื้อหาเป็นแนวตั้ง */
+  .information {
+    flex-direction: column;
+  }
+
+  .info-left {
+    display: none; /* ซ่อนฝั่งซ้ายตามสเปก */
+  }
+
+  .info-right {
+    width: 100%;
+    background: var(--lightgrey);
+  }
+
+  /* จัดการตัวการ์ด */
+  .info-card {
+    display: flex; /* มั่นใจว่าเป็น flex */
+    flex-direction: column; /* บนมือถือให้รูปอยู่บน ข้อความอยู่ล่าง */
+    padding: 0; /* เว้นระยะด้านล่างการ์ดแต่ละใบ */
+    background: var(--lightgrey) !important;
+    align-items: stretch;
+  }
+
+  /* จัดการรูปภาพ (ในแท็ก picture) */
+  .info-card picture {
+    width: 100%;
+    display: block;
+    line-height: 0; /* ← กำจัด gap ใต้รูป */
+  }
+
+  .info-card img.card-image {
+    width: 100%;
+    height: 240; /* ← ล็อคความสูงให้เท่ากันทุกการ์ด */
+    object-fit: cover;
+    display: block;
+    margin-bottom: 0;
+  }
+
+  .info-card-body {
+    padding: 24px 16px; /* ← padding เท่ากันทุกการ์ด */
+  }
+
+  .info-card-body h3 {
+    margin: 0 0 12px 0; /* ห่างจาก p แค่ด้านล่าง 12px */
+  }
+
+  .info-card-body p {
+    margin: 0 0 16px 0; /* ห้ห่างจาก link 'Read more' 16px */
   }
 }
