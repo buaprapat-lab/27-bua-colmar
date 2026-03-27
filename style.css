@@ -1,35 +1,35 @@
-/* 1.จัดการเรื่องขนาดกล่องให้ครอบคลุมทุกส่วน */
+/* 1. BOX MODEL RESET: จัดการเรื่องขนาดกล่องให้ครอบคลุมทุกส่วน */
 *,
 *::before,
 *::after {
   box-sizing: border-box; /*ให้ขนาดกล่องรวมและ  border ไม่ขยายใหญ่เกินที่สั่ง */
 }
 
-/* 2. Reset basic margin และ padding */
 * {
   margin: 0; /* เอาขอบขาวๆ ด้านนอกออกให้หมด */
   padding: 0; /*เอาพื้นที่ว่างด้านในออกให้หมด */
 }
 
-/* 3. Set VARIANCES */
+/* 2. CSS VARIABLES  */
 :root {
-  --darkgrey: #d3d3d3; /* 2nd section bg*/
-  --lightgrey: #f0f4f3; /*main section bg*/
-  --black: #505050; /* general heading*/
+  --darkgrey: #d3d3d3; /* 2nd bgc */
+  --lightgrey: #f0f4f3; /* primary bgc */
+  --black: #505050; /* primary font-color*/
+  --dark: #444; /* 3rd color */
   --light-bg: #f0efed;
   --white: #ffffff;
   --link: #3a7ca5;
-  --text-muted: #666; /* Paragraph */
-  --font-display: "Montserrat", sans-serif; /* Heading */
-  --font-body: "Source Sans 3", sans-serif; /* Body/Paragraph */
+  --text-muted: #666; /* 2nd font-color */
+  --font-display: "Montserrat", sans-serif; /* Heading font */
+  --font-body: "Source Sans 3", sans-serif; /* Body/Paragraph font */
 }
 
-/* 4. Set Body Style = Big Picture */
+/* 3. Set BASE BODY = Big Picture */
 body {
   font-family: var(--font-body);
   font-weight: 400;
-  font-size: 16;
-  line-height: 1.6px;
+  font-size: 16px;
+  line-height: 1.6;
   letter-spacing: normal;
   color: var(--black); /* สีตัวหนังสือหลัก (เข้มเกือบดำ) */
   background: var(--lightgrey);
@@ -45,7 +45,7 @@ body {
 header {
   display: flex; /* logo - nav menu มาเรียงแถว */
   align-items: center; /* กึ่งกลางในแกน Y*/
-  padding: 0 24px; /* ระยะห่างจากขอบ left-right*/
+  padding: 0 0 0 24px; /* ระยะห่างจากขอบ left-right*/
   height: 64px; /* REQ: Header height = 64px*/
   background: var(--white);
   border-bottom: 1px solid var(--lightgrey);
@@ -62,7 +62,7 @@ header {
   text-decoration: none;
 }
 
-.logo icon {
+.logo-icon {
   width: 32px;
   height: 32px;
 }
@@ -74,8 +74,8 @@ header {
   color: var(--black);
 }
 
-.logo-text span {
-  font-weight: 600;
+.logo-bold {
+  font-weight: 700;
 }
 
 .nav-icon {
@@ -84,7 +84,6 @@ header {
 
 nav {
   display: flex;
-  gap: 0; /* แต่ละพื้นที่ของ nav menu ไม่มีข่องว่าง เวลา hover จะเห็นเป็นแถบต่อกัน*/
 }
 
 nav a {
@@ -94,11 +93,7 @@ nav a {
   color: var(--black);
   text-decoration: none; /*เอาเส้นใต้ tag a ออก*/
   height: 64px;
-  line-height: 64px; /* สูงเท่าความกว้่างกล่อง ให้ menu at center auto*/
-}
-
-nav a.sign-in {
-  padding-right: 24px;
+  line-height: 64px; /* ทำให้ไม่ติดขอบบน ความสูงเท่า height เลยจัดกึ่งกลาง auto */
 }
 
 nav a:hover {
@@ -128,8 +123,7 @@ nav a:hover {
 .hero-content {
   flex: 1;
   display: flex;
-  margin-left: 0;
-  padding: 32px 24px 32px 24px;
+  padding: 32px 24px;
   flex-direction: column; /*เพื่อให้ h1, p, bth วางเรียงแนวตั้ง*/
   justify-content: center;
 }
@@ -152,26 +146,25 @@ nav a:hover {
 }
 .btn-primary {
   display: inline-flex; /*ให้ปุ่มรับค่า padding, height ได้ แต่ไม่กินพื้นที่เหมือน block*/
+  align-items: center;
+  justify-content: center;
   background: var(--black);
+  color: var(--white);
   height: 44px;
   width: 70%;
-  padding: 8px auto;
+  padding: 0 8px;
   font-family: var(--font-display);
   font-size: 15px;
   font-weight: 400;
   letter-spacing: 0.06em;
-  color: var(--white);
   text-decoration: none;
-  justify-content: center;
-  align-items: center;
-  line-height: normal;
   cursor: pointer; /* ลูกศรเมาส์เป็นรูปมือ*/
   border: none;
   align-self: flex-start; /* ปุ่มชิดซ้าย */
 }
 
 .btn-primary:hover {
-  background: #444;
+  background: var(--dark);
 }
 
 /* === SECTION 3: INFORMATION === */
@@ -188,7 +181,6 @@ nav a:hover {
 .info-left {
   width: 60%; /* REQ */
   margin: 32px 24px;
-  background: var(--lightgrey);
 }
 
 .info-left img {
@@ -219,25 +211,21 @@ nav a:hover {
   font-weight: 500;
   color: var(--black);
   font-style: normal;
-  margin-bottom: 32px;
 }
 
-/* INFO-LEFT */
+/* INFO-RIGHT */
 
 .info-right {
   flex: 1; /* ให้กินพื้นที่ 40% ที่เหลืออัตโนมัติ */
-  background: var(--lightgrey);
   display: flex;
   flex-direction: column;
 }
 
 .info-card {
   display: flex;
-  gap: 0;
   align-items: center;
-  padding: 24px;
+  padding: 16px;
   border-bottom: 1px solid var(--darkgrey);
-  background: var(--lightgrey);
 }
 
 .info-card:last-child {
@@ -276,7 +264,7 @@ nav a:hover {
 .info-card-body p {
   font-size: 16px;
   color: var(--text-muted);
-  line-height: normal;
+  line-height: 1.5;
   margin-bottom: 16px;
 }
 
@@ -306,7 +294,7 @@ nav a:hover {
 
 .courses-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr); /* แบ่งสาม col ขนาดเท่ากัน */
   gap: 32px;
 }
 
@@ -327,7 +315,6 @@ nav a:hover {
 }
 
 .course-card-body h3 {
-  font-family: var(--font-body);
   font-size: 1.15rem;
   font-weight: 700;
   line-height: 1.5;
@@ -343,7 +330,7 @@ nav a:hover {
 }
 
 .course-card-body p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
   color: var(--text-muted);
 }
@@ -352,14 +339,14 @@ nav a:hover {
   background: var(--darkgrey);
 }
 
-/* === SECTION1 5 : THESIS EXHIBIT  === */
+/* === SECTION 5 : THESIS EXHIBIT  === */
 .thesis {
   padding: 32px 0;
   background: var(--lightgrey);
 }
 
 .thesis h2 {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-size: 2rem;
   text-align: center;
   margin-bottom: 32px;
@@ -371,21 +358,16 @@ nav a:hover {
 
 .thesis-left {
   width: 60%;
-  padding: 32px 24px 24px 24px;
+  padding: 0 24px 24px;
 }
 
 video {
   width: 100%;
   aspect-ratio: 16/9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  cursor: pointer;
+  display: block; /* ป้องกัน ghost space*/
 }
 
 .thesis-left h3 {
-  font-family: var(--font-body);
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.5;
@@ -394,7 +376,7 @@ video {
 
 .thesis-left p {
   font-size: 15px;
-  line-height: 1.2;
+  line-height: 1.5;
   color: var(--text-muted);
 }
 
@@ -407,7 +389,7 @@ video {
 
 .thesis-card {
   display: flex;
-  gap: 0;
+  align-items: flex-start; /* ให้รูปกับข้อความเกาะขอบบน */
   padding: 16px;
   border-bottom: 1px solid var(--lightgrey);
   cursor: pointer;
@@ -423,29 +405,30 @@ video {
 
 .thesis-card img {
   width: 35%;
+  aspect-ratio: 1 / 1; /* ล็อคสัดส่วนรูปให้เท่ากันทุก card */
   object-fit: cover;
   flex-shrink: 0;
+  display: block;
 }
 
 .thesis-card-body {
-  padding: 8px 0 8px 16px;
+  padding: 0 0 0 16px; /* ลด padding บน-ล่างออก ให้ชิดขอบบนเหมือน align-items: flex-start */
 }
 
 .thesis-card-body h3 {
-  font-family: var(--font-body);
   font-size: 1.5rem;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1.4;
   margin-bottom: 6px;
 }
 
 .thesis-card-body p {
   font-size: 16px;
-  line-height: 1.2;
+  line-height: 1.5;
   color: var(--text-muted);
 }
 
-/* === SECTION1 6 : FOOTER  === */
+/* === SECTION 6 : FOOTER  === */
 footer {
   background: var(--lightgrey);
   border-top: 1px solid var(--darkgrey);
@@ -455,21 +438,18 @@ footer {
   justify-content: space-between;
 }
 
-footer p {
+footer small {
   font-size: 13px;
   color: var(--text-muted);
 }
 
 footer nav a {
-  height: auto;
-  line-height: normal;
   font-size: 13px;
   color: var(--text-muted);
   padding: 0 0 0 16px;
 }
 
 footer nav a:hover {
-  background: none;
   text-decoration: underline;
 }
 
@@ -477,14 +457,10 @@ footer nav a:hover {
              2. MOBILE  ≤ 680px
     ══════════════════════════════════════ */
 @media (max-width: 680px) {
-  /* === HEADER === */
+  /* === NAVBAR === */
   header {
-    width: 100%;
     padding: 0; /* ล้าง padding ออกเพื่อให้กระจายได้เต็มหน้าจอ */
-    display: flex;
-    align-items: center;
     justify-content: space-evenly; /* ใช้ space-evenly เพื่อให้ระยะห่างระหว่าง Logo และ Icons เท่ากันหมด */
-    height: 64px;
   }
 
   /* ซ่อนข้อความทั้งหมด */
@@ -500,8 +476,6 @@ footer nav a:hover {
 
   .logo {
     /* ให้โลโก้ทำตัวเหมือนเป็นส่วนหนึ่งของการกระจายพื้นที่ 25% */
-    display: flex;
-    align-items: center;
     justify-content: center;
     height: 100%; /* ให้ความสูงเต็ม header */
     flex: 0.25; /* ปรับสัดส่วนให้ใกล้เคียงกับไอคอนอื่นๆ กินพื้นที่ 25% ของ 1 */
@@ -513,12 +487,9 @@ footer nav a:hover {
 
   /* ปรับโครงสร้าง nav ไม่ให้ขวางทางระยะห่าง */
   nav {
-    display: flex;
     flex: 1; /* ให้ nav กินพื้นที่ที่เหลือ */
-    align-items: center; /* จัดกลางแนวตั้งในระดับ nav */
     height: 100%; /* ให้ nav สูงเต็ม header */
     justify-content: space-evenly;
-    gap: 0;
   }
 
   nav a {
@@ -527,6 +498,7 @@ footer nav a:hover {
     align-items: center;
     flex: 1; /* ให้แต่ละลิงก์มีพื้นที่เท่าๆ กัน (จากพื้นที่เหลือท่ี่แบ่งมาจาก nav อีกที) */
     height: 100%; /* ให้พื้นที่คลิกสูงเต็ม header */
+    line-height: normal; /* reset line-height: 64px จาก desktop */
   }
 
   .nav-icon {
@@ -535,7 +507,7 @@ footer nav a:hover {
     width: auto;
   }
 
-  /* === HEADER : Stack verically === */
+  /* === HERO : Stack verically === */
 
   .hero {
     flex-direction: column; /* สั่งให้รูปอยู่บน ข้อความอยู่ล่าง */
@@ -544,19 +516,15 @@ footer nav a:hover {
   .hero-image {
     width: 100%; /* รูปกินเต็มความกว้างจอ */
     margin: 0; /* ล้าง margin ที่เคยตั้งไว้ใน desktop ออก */
-    display: block; /* มั่นใจว่าแสดงผลเต็มบรรทัด */
   }
 
   .hero-image img {
-    width: 100%;
     height: auto; /* ให้ความสูงปรับตามสัดส่วนรูปจริง ไม่โดนบีบ */
   }
 
   .hero-content {
     width: 100%;
     padding: 32px 16px;
-    align-items: flex-start;
-    margin-left: 0;
   }
 
   .hero-content h1 {
@@ -572,9 +540,7 @@ footer nav a:hover {
 
   .btn-primary {
     width: 100%;
-    text-align: center;
     align-self: stretch;
-    padding: 16px;
   }
 
   /* === INFO SECTION ===
@@ -591,15 +557,12 @@ footer nav a:hover {
 
   .info-right {
     width: 100%;
-    background: var(--lightgrey);
   }
 
   /* จัดการตัวการ์ด */
   .info-card {
-    display: flex; /* มั่นใจว่าเป็น flex */
     flex-direction: column; /* บนมือถือให้รูปอยู่บน ข้อความอยู่ล่าง */
     padding: 0; /* เว้นระยะด้านล่างการ์ดแต่ละใบ */
-    background: var(--lightgrey) !important;
     align-items: stretch;
   }
 
@@ -612,10 +575,9 @@ footer nav a:hover {
 
   .info-card img.card-image {
     width: 100%;
-    height: 240; /* ← ล็อคความสูงให้เท่ากันทุกการ์ด */
+    height: 240px; /* ← ล็อคความสูงให้เท่ากันทุกการ์ด */
     object-fit: cover;
     display: block;
-    margin-bottom: 0;
   }
 
   .info-card-body {
@@ -623,22 +585,21 @@ footer nav a:hover {
   }
 
   .info-card-body h3 {
-    margin: 0 0 12px 0; /* ห่างจาก p แค่ด้านล่าง 12px */
+    margin-bottom: 12px; /* ห่างจาก p แค่ด้านล่าง 12px */
   }
 
   .info-card-body p {
-    margin: 0 0 16px 0; /* ห้ห่างจาก link 'Read more' 16px */
+    margin-bottom: 16px; /* ห้ห่างจาก link 'Read more' 16px */
   }
 
   /* === COURSE === 
 Single-colum list, no images */
 
-  .course {
+  .courses {
     padding: 32px 16px;
   }
 
   .courses-grid {
-    display: grid;
     grid-template-columns: 1fr; /*วางเลย์เอาท์ให้ 1 แถวมี 1 col*/
     gap: 8px; /* REQ  แต่ละช่องห่างกัน */
   }
@@ -658,7 +619,6 @@ Single-colum list, no images */
 
   .course-card-body h3 {
     font-size: 1.6rem;
-    font-weight: 700;
   }
 
   .course-card:hover {
@@ -673,11 +633,11 @@ Single-colum list, no images */
 
   /* === THESIS === 
       full-width video only, hide right panel */
-  .thesis-section {
+  .thesis {
     padding: 0;
   }
 
-  .thesis-section h2 {
+  .thesis h2 {
     padding: 32px 16px 16px;
     margin-bottom: 0;
   }
@@ -708,7 +668,6 @@ Single-colum list, no images */
     margin-top: 24px;
     flex-direction: column;
     align-items: flex-start;
-    gap: 0;
   }
 
   footer nav {
