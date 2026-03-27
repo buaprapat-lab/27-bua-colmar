@@ -290,6 +290,68 @@ nav a:hover {
   text-decoration: underline;
 }
 
+/* === SECTION 4: COURSES === */
+
+.courses {
+  background: var(--lightgrey);
+  padding: 32px 72px; /* REQ */
+}
+
+.courses h2 {
+  font-family: var(--font-body);
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.course-card {
+  background: var(--white);
+  overflow: hidden;
+}
+
+.course-card img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  display: block;
+}
+
+.course-card-body {
+  padding: 16px 16px 24px;
+}
+
+.course-card-body h3 {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.course-label {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.course-card-body p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.course-card:hover {
+  background: var(--darkgrey);
+}
+
 /* ══════════════════════════════════════
              2. MOBILE  ≤ 680px
     ══════════════════════════════════════ */
@@ -394,7 +456,9 @@ nav a:hover {
     padding: 16px;
   }
 
-  /* INFO SECTION: hide left column, stack cards vertically */
+  /* === INFO SECTION ===
+  hide left column, stack cards vertically */
+
   /*  จัดเรียงเนื้อหาเป็นแนวตั้ง */
   .information {
     flex-direction: column;
@@ -444,4 +508,45 @@ nav a:hover {
   .info-card-body p {
     margin: 0 0 16px 0; /* ห้ห่างจาก link 'Read more' 16px */
   }
+
+  /* === COURSE === 
+Single-colum list, no images */
+
+  .course {
+    padding: 32px 16px;
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: 1fr; /*วางเลย์เอาท์ให้ 1 แถวมี 1 col*/
+    gap: 8px; /* REQ  แต่ละช่องห่างกัน */
+  }
+
+  .course-card img {
+    display: none;
+    /* hide images on mobile per spec */
+  }
+
+  .course-card {
+    background: var(--darkgrey);
+  }
+
+  .course-card-body {
+    padding: 16px 16px 24px;
+  }
+
+  .course-card-body h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  .course-card:hover {
+    background: var(--black);
+    color: var(--lightgrey);
+  }
+
+  .course-label,
+  .course-card-body p {
+    display: none;
+  } /* list style = title only */
 }
