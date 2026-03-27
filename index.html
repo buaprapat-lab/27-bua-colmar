@@ -3,9 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>27-bua-colmar</title>
+    <title>Colmar Academy</title>
+    <link href="style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
+
   <body>
-    <h1>27-bua-colmar</h1>
+    <header>
+      <!-- ══════════════════════════
+                NAVIGATION BAR 
+          LOGO ---------------- NAV MENU       
+        ═══════════════════════════ -->
+
+      <a href="#" class="logo">
+        <!--== LOGO-ICON ==-->
+        <img
+          src="images/ic-logo.svg"
+          alt="Colmar Academy Logo"
+          class="logo-icon"
+        />
+        <!--== LOGO-TEXT ==-->
+        <span class="logo-text"><strong>COLMAR</strong>ACADEMY</span>
+      </a>
+
+      <!--== NAV-SPACER ======
+             ให้มีช่องว่างแบ่ง 2 ด้าน ==
+      <div class="nav-spacer"></div>  ==-->
+
+      <!--== NAV MENU * Desktop 4/ Mobile 3 ==-->
+      <nav>
+        <a href="#">
+          <img
+            src="images/ic-on-campus.svg"
+            alt="On Campus Icon"
+            class="nav-icon"
+          />
+          <span class="nav-text">On campus</span>
+        </a>
+
+        <a href="#">
+          <img src="images/ic-online.svg" alt="Online Icon" class="nav-icon" />
+          <span class="nav-text">Online</span>
+        </a>
+
+        <a href="#" class="hide-mobile">
+          <span class="nav-text">For companies</span>
+        </a>
+
+        <a href="#">
+          <img src="images/ic-login.svg" alt="Sign In Icon" class="nav-icon" />
+          <span class="nav-text">Sign in</span>
+        </a>
+      </nav>
+    </header>
   </body>
 </html>

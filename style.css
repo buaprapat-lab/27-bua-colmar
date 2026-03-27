@@ -1,0 +1,169 @@
+/* 1.จัดการเรื่องขนาดกล่องให้ครอบคลุมทุกส่วน */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /*ให้ขนาดกล่องรวมและ  border ไม่ขยายใหญ่เกินที่สั่ง */
+}
+
+/* 2. Reset basic margin และ padding */
+* {
+  margin: 0; /* เอาขอบขาวๆ ด้านนอกออกให้หมด */
+  padding: 0; /*เอาพื้นที่ว่างด้านในออกให้หมด */
+}
+
+/* 3. Set VARIANCES */
+:root {
+  --darkgrey: #d3d3d3; /* 2nd section bg*/
+  --lightgrey: #f0f4f3; /*main section bg*/
+  --black: #505050; /* general heading*/
+  --light-bg: #f0efed;
+  --white: #ffffff;
+  --link: #3a7ca5;
+  --text-muted: #666; /* Paragraph */
+  --font-display: "Source Sans 3", sans-serif; /* Heading */
+  --font-body: "Roboto", sans-serif; /* Body/Paragraph */
+}
+
+/* 4. Set Body Style = Big Picture */
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16;
+  line-height: 1.6px;
+  color: var(--black); /* สีตัวหนังสือหลัก (เข้มเกือบดำ) */
+  background: var(--lightgrey);
+}
+
+/* RESPOSIVE WEB : DESKTOP + MOBILE VERSION */
+/* ══════════════════════════════════════
+                1. DESKTOP
+    ══════════════════════════════════════ */
+
+/* === SECTION1 1 : NAVBAR === */
+
+header {
+  display: flex; /* logo - nav menu มาเรียงแถว */
+  align-items: center; /* กึ่งกลางในแกน Y*/
+  padding: 0 24px; /* ระยะห่างจากขอบ left-right*/
+  height: 64px; /* REQ: Header height = 64px*/
+  background: var(--white);
+  border-bottom: 1px solid var(--lightgrey);
+  position: sticky;
+  top: 0; /* ทำงานกับ sticky ให้ติดที่ 0px*/
+  z-index: 100; /* ตั้งให้ header = layer บนสุดเสมอ*/
+  justify-content: space-between; /* แยกสองฝั่ง */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* ระหว่าง logo - logo-text*/
+  text-decoration: none;
+}
+
+.logo icon {
+  width: 32px;
+  height: 32px;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 24px;
+  letter-spacing: 0.04em; /* relative em ขึ้นกับ font-size*/
+  color: var(--black);
+}
+
+.logo-text span {
+  font-weight: 600;
+}
+
+.nav-icon {
+  display: none; /*ไม่ต้องแสดงไอคอนใน desktop*/
+}
+
+nav {
+  display: flex;
+  gap: 0; /* แต่ละพื้นที่ของ nav menu ไม่มีข่องว่าง เวลา hover จะเห็นเป็นแถบต่อกัน*/
+}
+
+nav a {
+  display: block; /* เปลี่ยนเป็ยบล็อคให้รับค่าความกว้าง สูงได้เวลา hover */
+  padding: 0 16px; /* REQ: ช่องว่างแต่ละเมนู 16px */
+  font-size: 15px;
+  color: var(--black);
+  text-decoration: none; /*เอาเส้นใต้ tag a ออก*/
+  height: 64px;
+  line-height: 64px; /* สูงเท่าความกว้่างกล่อง ให้ menu at center auto*/
+}
+
+nav a.sign-in {
+  padding-right: 24px;
+}
+
+nav a:hover {
+  background: var(--darkgrey);
+}
+
+/* === SECTION 2 : HERO === */
+
+/* ══════════════════════════════════════
+             2. MOBILE  ≤ 680px
+    ══════════════════════════════════════ */
+@media (max-width: 680px) {
+  header {
+    width: 100%;
+    padding: 0; /* ล้าง padding ออกเพื่อให้กระจายได้เต็มหน้าจอ */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly; /* ใช้ space-evenly เพื่อให้ระยะห่างระหว่าง Logo และ Icons เท่ากันหมด */
+    height: 64px;
+  }
+
+  /* ซ่อนข้อความทั้งหมด */
+  .logo-text,
+  .nav-text {
+    display: none;
+  }
+
+  /* สั่งซ่อนเมนู For companies บน Mobile */
+  .hide-mobile {
+    display: none !important;
+  }
+
+  .logo {
+    /* ให้โลโก้ทำตัวเหมือนเป็นส่วนหนึ่งของการกระจายพื้นที่ 25% */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* ให้ความสูงเต็ม header */
+    flex: 0.25; /* ปรับสัดส่วนให้ใกล้เคียงกับไอคอนอื่นๆ กินพื้นที่ 25% ของ 1 */
+  }
+
+  .logo:hover {
+    background-color: var(--darkgrey);
+  }
+
+  /* ปรับโครงสร้าง nav ไม่ให้ขวางทางระยะห่าง */
+  nav {
+    display: flex;
+    flex: 1; /* ให้ nav กินพื้นที่ที่เหลือ */
+    align-items: center; /* จัดกลางแนวตั้งในระดับ nav */
+    height: 100%; /* ให้ nav สูงเต็ม header */
+    justify-content: space-evenly;
+    gap: 0;
+  }
+
+  nav a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* ให้แต่ละลิงก์มีพื้นที่เท่าๆ กัน (จากพื้นที่เหลือท่ี่แบ่งมาจาก nav อีกที) */
+    height: 100%; /* เพิ่มบรรทัดนี้: ให้พื้นที่คลิกสูงเต็ม header */
+  }
+
+  .nav-icon {
+    display: block;
+    height: 32px; /* ขนาดความสูง nav-icon */
+    width: auto;
+  }
+}
